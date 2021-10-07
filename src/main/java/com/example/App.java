@@ -1,6 +1,6 @@
 package com.example;
+import com.mongodb.BasicDBObject;
 import com.mongodb.client.*;
-import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import org.bson.Document;
 import java.util.ArrayList;
@@ -21,12 +21,20 @@ public class App
             //many(mongoClient);
             //delete(mongoClient);
             //update(mongoClient);
-            print(mongoClient);
+            //printall(mongoClient);
+            find(mongoClient);
         }
 
     }
 
-    private static void print(MongoClient mongoClient) {
+    private static void find(MongoClient mongoClient) {
+        MongoCollection<Document> record = mongoClient.getDatabase("test").getCollection("person");
+        FindIterable<Document> res = record.find(new BasicDBObject("name",6+""));
+        for (Document res1 : res)
+            System.out.println(res1);
+    }
+
+    private static void printall(MongoClient mongoClient) {
         MongoCollection<Document> record = mongoClient.getDatabase("test").getCollection("person");
         FindIterable<Document> iterDoc = record.find();
         int i = 1;
