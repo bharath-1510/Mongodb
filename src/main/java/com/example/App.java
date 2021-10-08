@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 public class App
 {
+
     public static void main( String[] args )
     {
         Logger.getLogger("org.mongodb.driver").setLevel(Level.WARNING);
@@ -29,9 +30,7 @@ public class App
 
     private static void find(MongoClient mongoClient) {
         MongoCollection<Document> record = mongoClient.getDatabase("test").getCollection("person");
-        FindIterable<Document> res = record.find(new BasicDBObject("name",6+""));
-        for (Document res1 : res)
-            System.out.println(res1);
+        
     }
 
     private static void printall(MongoClient mongoClient) {
