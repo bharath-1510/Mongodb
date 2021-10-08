@@ -30,7 +30,9 @@ public class App
 
     private static void find(MongoClient mongoClient) {
         MongoCollection<Document> record = mongoClient.getDatabase("test").getCollection("person");
-        
+        FindIterable<Document> res = record.find(new BasicDBObject("name",6+""));
+        for (Document res1 : res)
+            System.out.println(res1);
     }
 
     private static void printall(MongoClient mongoClient) {
